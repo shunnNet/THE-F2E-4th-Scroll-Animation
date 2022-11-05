@@ -22,6 +22,10 @@
   }
 }
 
+@function theme-color($name) {
+  @return map-get($map: $colors, $key: $name);
+}
+
 @mixin max-box($width) {
   max-width: $width;
   width: 100%;

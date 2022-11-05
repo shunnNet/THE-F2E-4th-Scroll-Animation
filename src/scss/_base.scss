@@ -18,13 +18,10 @@ body {
   line-height: 1.5;
   background-color: black;
   color: #ffffff;
-  &::after {
-    background-color: #fff;
-    content: '';
-    display: block;
-    width: 300px;
-    padding: 20px;
-  }
+}
+
+button {
+  font-family: 'cubic';
 }
 
 h1,

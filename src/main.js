@@ -1,4 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import VButton from '@/components/common/VButton.vue'
+
+const app = createApp(App)
+app.component('VButton', VButton)
+app.mount('#app')

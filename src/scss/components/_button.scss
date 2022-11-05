@@ -1,0 +1,71 @@
+.v-button {
+  --shadow-offset: -8px;
+  --transform-offset: 8px;
+  position: relative;
+  font-size: 24px;
+  line-height: 35px;
+  padding: 4px 22px;
+  color: theme-color(primary);
+  background-color: theme-color(light);
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  &:hover {
+    box-shadow: var(--shadow-offset) var(--shadow-offset)
+      theme-color(primary-light);
+    transform: translate(var(--transform-offset), var(--transform-offset));
+  }
+  &:active {
+    box-shadow: none;
+    transform: none;
+    background-color: theme-color(secondary);
+  }
+  &:focus {
+    outline: 0;
+  }
+  &:disabled {
+    background-color: theme-color(light-gray);
+    color: theme-color(light);
+    cursor: not-allowed;
+  }
+}
+
+.v-button--mini {
+  --shadow-offset: -5px;
+  --transform-offset: 5px;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 8px 17px;
+}
+
+.v-button--large {
+  font-size: 36px;
+  line-height: 51px;
+  padding: 7px 37px;
+}
+
+.v-button--expand {
+  --shadow-offset: -12px;
+  --transform-offset: 12px;
+  display: block;
+  width: 100%;
+  font-size: 72px;
+  line-height: 84px;
+  padding: 28px 37px;
+}
+
+.v-button.flick {
+  box-shadow: none !important;
+  transform: none !important;
+  @include flicker(button-flicker);
+}
+
+@keyframes button-flicker {
+  0% {
+    background-color: theme-color(secondary);
+  }
+  100% {
+    color: theme-color(primary);
+    background-color: theme-color(light);
+  }
+}

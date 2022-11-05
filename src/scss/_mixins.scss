@@ -30,8 +30,8 @@
   max-width: $width;
   width: 100%;
 }
-@mixin flicker($animationName) {
-  animation-duration: 0.1s;
+@mixin flicker($animationName, $duration: 0.1s) {
+  animation-duration: $duration;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
   animation-name: $animationName;

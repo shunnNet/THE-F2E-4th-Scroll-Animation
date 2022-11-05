@@ -1,22 +1,18 @@
 @mixin breakpoint($point) {
-  @if $point==lg-desktop {
-    @media (max-width: 1920px) {
+  @if $point==desktop {
+    @media (min-width: 1440px) {
       @content;
     }
-  } @else if $point==desktop {
-    @media (max-width: 1440px) {
+  } @else if $point==laptop {
+    @media (min-width: 1024px) {
       @content;
     }
   } @else if $point==tablet {
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
       @content;
     }
   } @else if $point==mobile {
-    @media (max-width: 576px) {
-      @content;
-    }
-  } @else if $point==small-mobile {
-    @media (max-width: 375px) {
+    @media (min-width: 576px) {
       @content;
     }
   }

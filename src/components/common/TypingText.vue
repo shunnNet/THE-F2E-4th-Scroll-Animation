@@ -7,7 +7,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  noCursor: {
+  useCursor: {
     type: Boolean,
     default: false,
   },
@@ -56,7 +56,7 @@ onMounted(() => {
 <template>
   <span class="typing-text">
     <span v-text="typingText" />
-    <span class="typing-text__cursor" v-if="!noCursor"> {{ cursor }} </span>
+    <span class="typing-text__cursor" v-if="useCursor"> {{ cursor }} </span>
   </span>
 </template>
 

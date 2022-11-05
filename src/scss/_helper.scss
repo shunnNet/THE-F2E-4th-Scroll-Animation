@@ -7,3 +7,8 @@
     background-color: #{$hex};
   }
 }
+
+.img--fluid {
+  max-width: 100%;
+  height: auto;
+}

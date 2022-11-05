@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { promiseWaterfall, sleep, repeat } from '@/utils/promise.js'
 
 const props = defineProps({

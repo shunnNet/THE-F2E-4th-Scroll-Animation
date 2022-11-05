@@ -1,6 +1,6 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, ref, defineProps } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { minmax } from '@/utils/math.js'
 
 const { y } = useWindowScroll()

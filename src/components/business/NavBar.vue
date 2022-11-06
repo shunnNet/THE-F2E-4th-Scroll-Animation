@@ -6,6 +6,14 @@ import { overTablet, overMobile } from '@/store/breakpoints.js'
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watch } from 'vue'
 import { delayNavigate } from '@/utils/browser.js'
+
+defineProps({
+  height: {
+    type: Number,
+    required: true,
+  },
+})
+
 const links = [
   { text: '關卡資訊', href: 'https://2022.thef2e.com/news' },
   { text: '作品列表', href: 'https://2022.thef2e.com/works' },
@@ -25,7 +33,7 @@ watch(scrollY, () => {
 })
 </script>
 <template>
-  <nav class="navbar">
+  <nav class="navbar" :style="{ '--navbar-height': `${height}px` }">
     <div class="navbar__wrap">
       <div class="navbar__logo-group">
         <VLink class="navbar__logo-wrap" href="/" theme="secondary" flick>
@@ -87,8 +95,8 @@ watch(scrollY, () => {
   </CollapseTransition>
 </template>
 <style lang="scss">
-$navbarHeight: 56px;
 .navbar {
+  --navbar-height: 56px;
   background-color: theme-color(primary);
   color: theme-color(dark);
   &__wrap {
@@ -109,7 +117,7 @@ $navbarHeight: 56px;
       height: 100%;
     }
     &-wrap {
-      height: $navbarHeight;
+      height: var(--navbar-height);
       display: flex;
       align-items: center;
       margin-right: 30px;
@@ -126,7 +134,7 @@ $navbarHeight: 56px;
 
   &__link-item {
     display: block;
-    line-height: $navbarHeight;
+    line-height: var(--navbar-height);
 
     @include breakpoint('tablet') {
       padding: 0;

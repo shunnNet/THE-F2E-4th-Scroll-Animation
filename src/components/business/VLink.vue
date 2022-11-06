@@ -15,8 +15,16 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  lock: {
+    type: Boolean,
+    default: false,
+  },
+  active: {
+    type: Boolean,
+    default: false,
+  },
 })
-const { flick, flickState } = useFlick(props)
+const { flick, isFlicking } = useFlick(props)
 
 const navigate = () => {
   if (props.flick) {
@@ -35,8 +43,16 @@ const linkClass = computed(() => {
   if (props.theme) {
     baseClass.push(`v-link--${props.theme}`)
   }
-  if (flickState.value) {
+  if (isFlicking.value) {
     baseClass.push('flick')
+  }
+
+  if (props.lock) {
+    baseClass.push('lock')
+  }
+
+  if (props.active) {
+    baseClass.push('active')
   }
 
   return baseClass
@@ -44,7 +60,7 @@ const linkClass = computed(() => {
 </script>
 <template>
   <a :class="linkClass" @click.prevent="navigate">
-    <slot></slot>
+    <slot :flick-state="isFlicking"></slot>
   </a>
 </template>
 <style lang="scss"></style>

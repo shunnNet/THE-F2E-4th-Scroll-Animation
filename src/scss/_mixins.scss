@@ -32,6 +32,7 @@
   animation-fill-mode: both;
   animation-name: $animationName;
   animation-timing-function: linear;
+  animation-direction: alternate;
 }
 
 @keyframes fadeOut {

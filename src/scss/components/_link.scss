@@ -9,11 +9,14 @@
 
   &:hover,
   &.active {
-    color: theme-color(primary);
+    @include flicker(link-flicker, 0.7s);
   }
 
   &.flick {
     @include flicker(link-flicker);
+  }
+  &.lock {
+    color: theme-color(light) !important;
   }
 }
 
@@ -34,11 +37,14 @@
 
   &:hover,
   &.active {
-    color: theme-color(light);
+    @include flicker(link-flicker-dark, 0.7s);
   }
 
   &.flick {
     @include flicker(link-flicker-dark);
+  }
+  &.lock {
+    color: theme-color(dark) !important;
   }
 }
 
@@ -59,11 +65,14 @@
 
   &:hover,
   &.active {
-    color: theme-color(light);
+    @include flicker(link-flicker-secondary, 0.7s);
   }
 
   &.flick {
     @include flicker(link-flicker-secondary);
+  }
+  &.lock {
+    color: theme-color(secondary) !important;
   }
 }
 

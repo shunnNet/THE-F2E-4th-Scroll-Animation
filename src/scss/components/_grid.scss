@@ -7,3 +7,14 @@
     padding: 0 35px;
   }
 }
+
+.container-md {
+  @include max-box(638px);
+  margin: 0 auto;
+  max-width: 436px;
+  padding: 0 25px;
+  @include breakpoint('tablet') {
+    max-width: 638px;
+    padding: 0;
+  }
+}

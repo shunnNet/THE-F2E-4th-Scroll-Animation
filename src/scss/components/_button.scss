@@ -49,9 +49,14 @@
   --transform-offset: 12px;
   display: block;
   width: 100%;
-  font-size: 72px;
-  line-height: 84px;
-  padding: 28px 37px;
+  font-size: 36px;
+  line-height: 51px;
+  padding: 7px;
+  @include breakpoint('tablet') {
+    font-size: 72px;
+    line-height: 84px;
+    padding: 28px 37px;
+  }
 }
 
 .v-button.flick {

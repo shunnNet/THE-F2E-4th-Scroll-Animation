@@ -55,6 +55,7 @@ const shouldLock = computed(() => itemSelected.value && !states.value.selected)
   position: relative;
   display: flex;
   align-items: center;
+  animation-direction: alternate;
   &__cursor {
     position: absolute;
     transform: translateX(-100%);

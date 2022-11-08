@@ -7,6 +7,7 @@ import SectionReview from '@/components/business/SectionReview.vue'
 import SectionReward from '@/components/business/SectionReward.vue'
 import SectionFaq from '@/components/business/SectionFaq.vue'
 import DiamondSponser from '@/components/business/DiamondSponser.vue'
+import SectionComingSlogan from '@/components/business/SectionComingSlogan.vue'
 import VButton from '@/components/business/VButton.vue'
 import { delayNavigate } from '@/utils/browser.js'
 import { useWindowSize } from '@vueuse/core'
@@ -20,6 +21,7 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
 <template>
   <NavBar :height="navBarHeight" />
   <SiteBanner :height="siteBannerHeight" />
+  <SectionComingSlogan class="layout-section-coming-slogan" />
   <SectionReview class="layout-section-review" />
   <SectionReward class="layout-section-reward" />
   <SectionFaq class="layout-section-faq" />
@@ -60,6 +62,15 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
   }
   &-section-registration {
     margin-bottom: 200px;
+  }
+
+  &-section-coming-slogan {
+    margin-bottom: 200px;
+    margin-top: 200px;
+    @include breakpoint('tablet') {
+      margin-top: 450px;
+      margin-bottom: 140px;
+    }
   }
 }
 </style>

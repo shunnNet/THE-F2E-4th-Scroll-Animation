@@ -8,7 +8,11 @@ const { y } = useWindowScroll()
 const props = defineProps({
   length: {
     type: [Number, String, Function],
-    default: 0,
+    default: 'element',
+  },
+  start: {
+    type: [Number, String, Function],
+    default: 'element',
   },
 })
 
@@ -16,28 +20,32 @@ let orbital = ref(null)
 
 let windowHeight = ref(window.innerHeight)
 
+const handleLengthUnit = (value) => {
+  if (value === 'element') {
+    return orbital.value.clientHeight
+  }
+  if (value === 'window') {
+    return windowHeight.value
+  }
+  if (typeof value === 'number' && value > 0) {
+    return value
+  }
+  if (typeof value === 'function') {
+    return value(orbital.value, windowHeight.value)
+  }
+
+  return value
+}
+
 const length = computed(() => {
   if (!orbital.value) {
     return 1
   }
-  if (props.length === 'element') {
-    return orbital.value.clientHeight
-  }
-  if (props.length === 'window') {
-    return windowHeight.value
-  }
-  if (typeof props.length === 'number' && props.length > 0) {
-    return props.length
-  }
-
-  if (typeof props.length === 'function') {
-    return props.length(orbital.value, windowHeight.value)
-  }
-
-  return 200
+  return handleLengthUnit(props.length)
 })
 
-const defineStartPosition = () => orbital.value.offsetTop
+const defineStartPosition = () =>
+  orbital.value.offsetTop - handleLengthUnit(props.start)
 const defineEndPosition = () =>
   orbital.value.offsetTop + orbital.value.clientHeight
 
@@ -61,6 +69,6 @@ const progress = computed(() =>
 
 <template>
   <div ref="orbital" :progress="progress" :length="length">
-    <slot :progress="progress"></slot>
+    <slot :progress="progress" :is-active="progress > 0"></slot>
   </div>
 </template>

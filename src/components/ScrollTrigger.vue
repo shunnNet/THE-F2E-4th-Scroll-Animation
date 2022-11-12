@@ -2,10 +2,11 @@
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref, watch } from 'vue'
 import { minmax } from '@/utils/math.js'
+import { useFrame } from '@/composition/useProgressor.js'
 
 const { y } = useWindowScroll()
 
-const emit = defineEmits(['state-change'])
+const emit = defineEmits(['state-change', 'frame-change'])
 
 const props = defineProps({
   length: {
@@ -15,6 +16,10 @@ const props = defineProps({
   start: {
     type: [Number, String, Function],
     default: 'element',
+  },
+  frameRate: {
+    type: Number,
+    default: 24,
   },
 })
 
@@ -68,10 +73,20 @@ const isActive = computed(() => progress.value > 0)
 watch(isActive, (val) => {
   emit('state-change', val)
 })
+
+const { frame } = useFrame(progress, length, props.frameRate)
+emit('frame-change', frame.value.index)
+
+watch(
+  () => frame.value.index,
+  (val) => {
+    emit('frame-change', val)
+  }
+)
 </script>
 
 <template>
   <div ref="orbital" :progress="progress" :length="length">
-    <slot :progress="progress" :is-active="progress > 0"></slot>
+    <slot :progress="progress" :is-active="progress > 0" :frame="frame" />
   </div>
 </template>

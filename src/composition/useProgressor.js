@@ -1,5 +1,5 @@
-import { ref } from 'vue'
-import { limitToMax, limitToMin } from '@/utils/math.js'
+import { computed, ref } from 'vue'
+import { limitToMax, limitToMin, toFrame } from '@/utils/math.js'
 
 export const useProgressor = () => {
   const progress = ref(0)
@@ -95,5 +95,11 @@ export const useProgressor = () => {
   return {
     progress,
     runner,
+  }
+}
+
+export const useFrame = (progressRef, lengthRef, rate = 24) => {
+  return {
+    frame: computed(() => toFrame(progressRef.value, lengthRef.value, rate)),
   }
 }

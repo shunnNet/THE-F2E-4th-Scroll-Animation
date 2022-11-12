@@ -1,9 +1,11 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { minmax } from '@/utils/math.js'
 
 const { y } = useWindowScroll()
+
+const emit = defineEmits(['state-change'])
 
 const props = defineProps({
   length: {
@@ -44,27 +46,28 @@ const length = computed(() => {
   return handleLengthUnit(props.length)
 })
 
+// TODO: orbital.value.offsetTop: with parent has position: relative
 const defineStartPosition = () =>
-  orbital.value.offsetTop - handleLengthUnit(props.start)
-const defineEndPosition = () =>
-  orbital.value.offsetTop + orbital.value.clientHeight
+  orbital.value.offsetTop - windowHeight.value + handleLengthUnit(props.start)
 
 let startPosition = ref(0)
-let endPosition = ref(0)
 
 onMounted(() => {
   startPosition.value = defineStartPosition()
-  endPosition.value = defineEndPosition()
 })
 window.addEventListener('resize', () => {
   startPosition.value = defineStartPosition()
-  endPosition.value = defineEndPosition()
   windowHeight.value = window.innerHeight
 })
 
 const progress = computed(() =>
   minmax(0, ((y.value - startPosition.value) / length.value) * 100, 100)
 )
+const isActive = computed(() => progress.value > 0)
+
+watch(isActive, (val) => {
+  emit('state-change', val)
+})
 </script>
 
 <template>

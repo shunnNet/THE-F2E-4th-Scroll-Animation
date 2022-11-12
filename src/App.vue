@@ -8,6 +8,7 @@ import SectionReward from '@/components/business/SectionReward.vue'
 import SectionFaq from '@/components/business/SectionFaq.vue'
 import DiamondSponser from '@/components/business/DiamondSponser.vue'
 import SectionComingSlogan from '@/components/business/SectionComingSlogan.vue'
+import SectionEventProcess from '@/components/business/SectionEventProcess.vue'
 import VButton from '@/components/business/VButton.vue'
 import { delayNavigate } from '@/utils/browser.js'
 import { useWindowSize } from '@vueuse/core'
@@ -21,6 +22,7 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
 <template>
   <NavBar :height="navBarHeight" />
   <SiteBanner :height="siteBannerHeight" />
+  <SectionEventProcess class="layout-section-event-process" />
   <SectionComingSlogan class="layout-section-coming-slogan" />
   <SectionReview class="layout-section-review" />
   <SectionReward class="layout-section-reward" />

@@ -87,26 +87,28 @@ const run = (process, isActive) => {
       >點我註冊報名!</VButton
     >
 
-    <div class="wrapper">
-      <ScrollTrigger
-        v-for="(process, index) in processRenderContents"
-        :key="process.title"
-        class="process"
-        @state-change="run(processAnimation[index], $event)"
-        :start="200"
-      >
-        <RaisingFlag
-          class="flag"
-          :progress="processAnimation[index].progress"
-        />
-        <div
-          class="content"
-          :class="{ enter: processAnimation[index].textAnimation }"
+    <div class="overflow-x-hidden">
+      <div class="wrapper">
+        <ScrollTrigger
+          v-for="(process, index) in processRenderContents"
+          :key="process.title"
+          class="process"
+          @state-change="run(processAnimation[index], $event)"
+          :start="200"
         >
-          <h3 class="title">{{ process.title }}</h3>
-          <p class="description" v-text="process.content" />
-        </div>
-      </ScrollTrigger>
+          <RaisingFlag
+            class="flag"
+            :progress="processAnimation[index].progress"
+          />
+          <div
+            class="content"
+            :class="{ enter: processAnimation[index].textAnimation }"
+          >
+            <h3 class="title">{{ process.title }}</h3>
+            <p class="description" v-text="process.content" />
+          </div>
+        </ScrollTrigger>
+      </div>
     </div>
   </section>
 </template>

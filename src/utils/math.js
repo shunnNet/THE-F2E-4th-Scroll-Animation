@@ -21,3 +21,12 @@ export const limitToMax = (value, max) => {
   }
   return value
 }
+
+export const mapPercentToScale = (val = 0, toScale = 100) => {
+  return (val / 100) * toScale
+}
+
+export const toFrame = (progress = 0, length = 1000, rate = 24) => {
+  const r = Math.floor(mapPercentToScale(progress, rate))
+  return (length / rate) * r
+}

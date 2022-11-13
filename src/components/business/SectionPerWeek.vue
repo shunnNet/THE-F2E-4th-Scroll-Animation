@@ -55,7 +55,7 @@ const tankRun = (state = true) => {
 </script>
 <template>
   <ScrollRail
-    :length="overMobile ? 12000 : 8000"
+    :length="overMobile ? 12000 : 4000"
     :frame-rate="3"
     @frame-change="frameIndex = $event"
   >

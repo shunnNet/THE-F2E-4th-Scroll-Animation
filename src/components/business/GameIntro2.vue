@@ -29,7 +29,7 @@ const soldierMove = (progress) => {
 }
 </script>
 <template>
-  <ScrollRail :length="5000">
+  <ScrollRail :length="3000">
     <template v-slot="{ progress }">
       <EclipseFilter
         :progress="track(progress, trackSetting).filter"

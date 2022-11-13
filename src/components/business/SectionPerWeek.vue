@@ -86,10 +86,7 @@ const tankRun = (state = true) => {
               <h3 class="week__title">The F2E 活動網站設計</h3>
               <p class="week__feature">視差滾動</p>
               <p class="week__company">#版塊設計</p>
-              <RaisingFlag
-                class="week__flag"
-                :progress="flagsAnimation[0].progress"
-              />
+              <RaisingFlag class="week__flag" :progress="100" />
             </section>
             <section class="week week-2">
               <h2 class="week__number">WEEK 2</h2>

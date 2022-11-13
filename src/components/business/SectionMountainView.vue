@@ -3,7 +3,7 @@ import ScrollRail from '@/components/ScrollRail.vue'
 import { mapPercentToScale } from '@/utils/math.js'
 </script>
 <template>
-  <ScrollRail :length="15000">
+  <ScrollRail :length="4000">
     <template v-slot="{ progress }">
       <div
         class="section-mountain-view"

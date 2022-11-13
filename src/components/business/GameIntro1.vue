@@ -14,7 +14,7 @@ const trackSetting = {
 }
 </script>
 <template>
-  <ScrollRail :length="5000">
+  <ScrollRail :length="3000">
     <template v-slot="{ progress }">
       <div class="game-intro1">
         <div

@@ -4,6 +4,7 @@ import RaisingFlag from '@/components/business/RaisingFlag.vue'
 import WalkingTank from '@/components/business/WalkingTank.vue'
 import { ref, watch } from 'vue'
 import { useProgressor } from '@/composition/useProgressor.js'
+import { overMobile } from '@/store/breakpoints.js'
 
 const flagsAnimation = ref(
   Array(3)
@@ -54,7 +55,7 @@ const tankRun = (state = true) => {
 </script>
 <template>
   <ScrollRail
-    :length="12000"
+    :length="overMobile ? 12000 : 8000"
     :frame-rate="3"
     @frame-change="frameIndex = $event"
   >

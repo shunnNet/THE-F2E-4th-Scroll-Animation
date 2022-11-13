@@ -5,8 +5,9 @@ import CollapseTransition from '@/components/common/CollapseTransition.vue'
 import { overTablet, overMobile } from '@/store/breakpoints.js'
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watch } from 'vue'
-import { delayNavigate } from '@/utils/browser.js'
+import { useLoadingNavigate } from '@/composition/useLoadingNavigate.js'
 
+const { loadingNavigate } = useLoadingNavigate()
 defineProps({
   height: {
     type: Number,
@@ -63,14 +64,14 @@ watch(scrollY, () => {
           class="navbar__button"
           :size="overMobile ? '' : 'mini'"
           flick
-          @click="delayNavigate('https://2022.thef2e.com/signup')"
+          @click="loadingNavigate('https://2022.thef2e.com/signup')"
           >註冊報名</VButton
         >
         <VButton
           v-if="overTablet"
           class="navbar__button"
           flick
-          @click="delayNavigate('https://2022.thef2e.com/login')"
+          @click="loadingNavigate('https://2022.thef2e.com/login')"
           >登入</VButton
         >
       </div>
@@ -79,7 +80,12 @@ watch(scrollY, () => {
   <CollapseTransition v-if="!overTablet" :collapse="showCollapse">
     <div class="navbar__collapse">
       <div class="navbar__collapse-item" v-for="l in links" :key="l">
-        <VLink class="navbar__link-item" :href="l.href" theme="dark" flick>
+        <VLink
+          class="navbar__link-item navbar__link-item-collapse"
+          :href="l.href"
+          theme="dark"
+          flick
+        >
           {{ l.text }}
         </VLink>
       </div>
@@ -87,7 +93,7 @@ watch(scrollY, () => {
         <VButton
           class="navbar__button w-full"
           flick
-          @click="delayNavigate('https://2022.thef2e.com/login')"
+          @click="loadingNavigate('https://2022.thef2e.com/login')"
           >登入</VButton
         >
       </div>
@@ -142,6 +148,13 @@ watch(scrollY, () => {
         margin-right: 30px;
       }
     }
+  }
+  &__link-item-collapse {
+    display: block;
+    padding: 20px 0;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
   }
 
   &__collapse {

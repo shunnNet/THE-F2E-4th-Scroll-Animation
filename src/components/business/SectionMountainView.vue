@@ -47,7 +47,6 @@ import { mapPercentToScale } from '@/utils/math.js'
             transform: `translateY(${mapPercentToScale(progress, 671)}px)`,
           }"
         />
-        <div class="layer layer-4" />
         <div class="layer layer-5" />
       </div>
     </template>
@@ -78,20 +77,49 @@ import { mapPercentToScale } from '@/utils/math.js'
     z-index: 2;
     background-image: url('@/assets/L2.png');
     background-position: bottom;
-    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: auto 400px;
+    @include breakpoint('tablet') {
+      background-size: auto 550px;
+    }
+    @include breakpoint('laptop') {
+      background-size: auto 672px;
+    }
+    @include breakpoint('desktop') {
+      background-size: contain;
+    }
   }
   .layer-3 {
     // 671
     z-index: 3;
     background-image: url('@/assets/L4.png'), url('@/assets/L3.png');
     background-position: bottom left, bottom right;
+    background-repeat: no-repeat;
+    background-size: auto 250px;
+
+    @include breakpoint('mobile') {
+      background-size: auto 350px;
+    }
+    @include breakpoint('laptop') {
+      background-size: auto 608px, auto 651px;
+    }
   }
   .layer-5 {
     // 3327
     z-index: 5;
     background-image: url('@/assets/L5.png');
-    background-position: bottom;
-    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: auto 250px;
+    @include breakpoint('mobile') {
+      background-size: auto 300px;
+    }
+    @include breakpoint('laptop') {
+      background-size: auto 565px;
+    }
+    @include breakpoint('desktop') {
+      background-size: contain;
+    }
   }
 
   .slogan {
@@ -109,14 +137,24 @@ import { mapPercentToScale } from '@/utils/math.js'
       animation-play-state: paused;
       animation-duration: 2s;
 
-      width: 400px;
+      width: 350px;
       padding: 18px 0;
+      margin: 0 auto;
       margin-bottom: 23px;
       border: 4px solid theme-color(light);
       text-align: center;
-      font-size: 36px;
-      line-height: 42px;
-      @include breakpoint('tablet') {
+
+      font-size: 24px;
+      line-height: 28px;
+
+      @include breakpoint('mobile') {
+        width: 400px;
+
+        font-size: 36px;
+        line-height: 42px;
+      }
+
+      @include breakpoint('laptop') {
         width: 788px;
         padding: 24px 0;
         margin-bottom: 12px;
@@ -129,7 +167,7 @@ import { mapPercentToScale } from '@/utils/math.js'
       font-size: 15px;
       line-height: 17.5px;
       height: 17.5px;
-      @include breakpoint('tablet') {
+      @include breakpoint('laptop') {
         font-size: 24px;
         line-height: 28px;
         height: 28px;

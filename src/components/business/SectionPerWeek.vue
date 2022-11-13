@@ -174,26 +174,49 @@ const tankRun = (state = true) => {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    @include breakpoint('desktop') {
+      background-position: left 33px;
+    }
 
     &__number {
       font-size: 36px;
       line-height: 42px;
       margin-bottom: 18px;
+      @include breakpoint('desktop') {
+        font-size: 52px;
+        line-height: 61px;
+        margin-bottom: 8px;
+      }
     }
     &__title {
       font-size: 36px;
       line-height: 42px;
       margin-bottom: 97px;
+      @include breakpoint('desktop') {
+        font-size: 72px;
+        line-height: 84px;
+        margin-bottom: 47px;
+      }
     }
     &__feature {
       font-size: 24px;
       line-height: 28px;
       margin-bottom: 31px;
+      @include breakpoint('desktop') {
+        font-size: 36px;
+        line-height: 42px;
+        margin-bottom: 17px;
+      }
     }
     &__company {
       font-size: 24px;
       line-height: 28px;
       margin-bottom: 50px;
+      @include breakpoint('desktop') {
+        font-size: 36px;
+        line-height: 42px;
+        margin-bottom: 42px;
+      }
     }
     &__flag {
       width: 140px;
@@ -203,18 +226,28 @@ const tankRun = (state = true) => {
   }
   .week-1 {
     background-image: url('@/assets/week1-bg.png');
+    @include breakpoint('desktop') {
+      background-image: url('@/assets/week1-bg-lg.png');
+    }
     .week__number {
       color: theme-color(primary-light);
     }
   }
   .week-2 {
     background-image: url('@/assets/week2-bg.png');
+    @include breakpoint('desktop') {
+      background-image: url('@/assets/week2-bg-lg.png');
+    }
     .week__number {
       color: #0061a1;
     }
   }
   .week-3 {
     background-image: url('@/assets/week3-bg.png');
+    @include breakpoint('desktop') {
+      background-image: url('@/assets/week3-bg-lg.png');
+    }
+
     .week__number {
       color: #c7ffa3;
     }

@@ -15,6 +15,7 @@
 
   &.flick {
     @include flicker(link-flicker);
+    animation-direction: normal;
   }
   &.lock {
     color: theme-color(light) !important;

@@ -1,11 +1,27 @@
 <script setup>
 import WalkingTank from '@/components/business/WalkingTank.vue'
-defineProps({
+import { watch } from 'vue'
+const props = defineProps({
   show: {
     type: Boolean,
     default: false,
   },
 })
+
+if (props.show) {
+  document.body.classList.add('overflow-hidden')
+}
+
+watch(
+  () => props.show,
+  (show) => {
+    if (show) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }
+)
 </script>
 <template>
   <div class="global-loading" v-if="show">

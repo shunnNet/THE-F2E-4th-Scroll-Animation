@@ -202,19 +202,19 @@ const tankRun = (state = true) => {
     }
   }
   .week-1 {
-    background-image: url('/week1-bg.png');
+    background-image: url('@/assets/week1-bg.png');
     .week__number {
       color: theme-color(primary-light);
     }
   }
   .week-2 {
-    background-image: url('/week2-bg.png');
+    background-image: url('@/assets/week2-bg.png');
     .week__number {
       color: #0061a1;
     }
   }
   .week-3 {
-    background-image: url('/week3-bg.png');
+    background-image: url('@/assets/week3-bg.png');
     .week__number {
       color: #c7ffa3;
     }

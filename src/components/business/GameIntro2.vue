@@ -48,7 +48,7 @@ const soldierMove = (progress) => {
               class="soldier"
               width="610"
               height="589"
-              src="/intro2-soldier.png"
+              src="@/assets/intro2-soldier.png"
               :style="{
                 transform: soldierMove(progress),
               }"
@@ -136,7 +136,7 @@ const soldierMove = (progress) => {
     left: -110px;
     top: -90px;
     z-index: 2;
-    background-image: url('/intro2-talk.png');
+    background-image: url('@/assets/intro2-talk.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

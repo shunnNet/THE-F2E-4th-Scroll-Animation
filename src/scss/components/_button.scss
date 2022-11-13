@@ -10,12 +10,13 @@
   display: inline-block;
   cursor: pointer;
   border: 0;
+  // &:hover {
+  //   box-shadow: var(--shadow-offset) var(--shadow-offset)
+  //     theme-color(primary-light);
+  //   transform: translate(var(--transform-offset), var(--transform-offset));
+  // }
+  &:active,
   &:hover {
-    box-shadow: var(--shadow-offset) var(--shadow-offset)
-      theme-color(primary-light);
-    transform: translate(var(--transform-offset), var(--transform-offset));
-  }
-  &:active {
     box-shadow: none;
     transform: none;
     background-color: theme-color(secondary);

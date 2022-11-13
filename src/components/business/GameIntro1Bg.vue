@@ -11,10 +11,10 @@ defineProps({
 <template>
   <div class="game-intro-1-movie">
     <img
-      class="game-intro-1-moive__bg"
+      class="game-intro-1-movie__bg"
       src="@/assets/intro1-bg.gif"
-      width="637"
-      height="429"
+      width="636"
+      height="430"
     />
     <WalkingTank active :class="{ show: showTank }" />
   </div>
@@ -30,15 +30,25 @@ defineProps({
   .tank {
     z-index: 2;
     position: absolute;
-    top: 40%;
+    top: 50%;
     right: 100%;
-    width: 336px;
-    height: 135px;
-
+    width: 220px;
+    height: 89px;
+    transform: translate(65%, -20%);
     transition: right 1s linear;
 
+    @include breakpoint('mobile') {
+      width: 263px;
+      height: 106px;
+    }
+    @include breakpoint('laptop') {
+      width: 336px;
+      height: 135px;
+      transform: translate(65%, -33%);
+    }
+
     &.show {
-      right: 16%;
+      right: 50%;
     }
   }
   &__bg {

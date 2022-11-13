@@ -4,6 +4,7 @@ import GameIntro1Bg from '@/components/business/GameIntro1Bg.vue'
 import { track } from '@/composition/useProgressor.js'
 import EclipseFilter from '@/components/common/EclipseFilter.vue'
 import { mapPercentToScale } from '@/utils/math.js'
+import { overLaptop } from '@/store/breakpoints.js'
 
 const trackSetting = {
   scroll: {
@@ -28,6 +29,14 @@ const trackSetting = {
             <div class="intro-movie">
               <GameIntro1Bg class="bg" :show-tank="progress > 40" />
             </div>
+            <TypingText
+              v-if="!overLaptop"
+              class="slogan"
+              text="羨慕別人的酷酷網頁動畫..."
+              :per-text="50"
+              manual
+              :manual-trigger="progress > 50"
+            />
           </EclipseFilter>
           <div class="talk" v-show="progress > 60">
             <div class="text">
@@ -41,6 +50,7 @@ const trackSetting = {
           </div>
         </div>
         <TypingText
+          v-if="overLaptop"
           class="slogan"
           text="羨慕別人的酷酷網頁動畫..."
           :per-text="50"
@@ -60,55 +70,91 @@ const trackSetting = {
 .game-intro1 {
   height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   .slogan {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 36px;
-    line-height: 42px;
-    transform: translateX(-50%);
-    $shadow: theme-color(secondary);
-    text-shadow: -3px 0 $shadow, 0 3px $shadow, 3px 0 $shadow, 0 -3px $shadow;
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    @include breakpoint('mobile') {
+      margin-top: 98px;
+    }
+
+    @include breakpoint('laptop') {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0;
+    }
   }
   .wrapper {
     position: relative;
-    width: 980px;
+    max-width: 980px;
+    width: 100%;
   }
   .intro-movie {
     position: relative;
-    width: 980px;
-    height: 570px;
-    background-color: theme-color(primary);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: visible;
+    max-width: 980px;
+    width: 100%;
+    padding: 55px 25px;
+    background-color: theme-color(primary);
+    @include breakpoint('laptop') {
+      padding: 70px 172px;
+    }
+  }
+  .bg {
+    max-width: 636px;
+    width: 100%;
+    @include breakpoint('laptop') {
+    }
   }
   .talk {
     position: absolute;
-    z-index: 2;
-    top: -44px;
+    width: 260px;
+    top: -6px;
     right: 0;
-    width: 390px;
-
+    padding-bottom: 24px;
+    z-index: 2;
     background-image: url('@/assets/intro1-talk.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    padding-bottom: 40px;
+
     .text {
       color: theme-color(dark);
       text-align: center;
-
-      font-size: 36px;
-      line-height: 77px;
-      height: 77px;
+      font-size: 16px;
+      line-height: 40px;
+      height: 40px;
     }
-  }
-  .bg {
-    width: 637px;
-    height: 429px;
+
+    @include breakpoint('mobile') {
+      top: -22px;
+      right: 0;
+      width: 305px;
+      padding-bottom: 30px;
+      .text {
+        font-size: 24px;
+        line-height: 50px;
+        height: 50px;
+      }
+    }
+
+    @include breakpoint('tablet') {
+      top: -44px;
+      width: 390px;
+      padding-bottom: 40px;
+      .text {
+        font-size: 36px;
+        line-height: 77px;
+        height: 77px;
+      }
+    }
   }
 }
 </style>

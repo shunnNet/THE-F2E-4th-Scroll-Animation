@@ -1,10 +1,8 @@
 <script setup>
 import ScrollTrigger from '@/components/ScrollTrigger.vue'
-import { useWindowSize } from '@vueuse/core'
+import { windowHeight } from '@/store/common.js'
 
 const emit = defineEmits(['frame-change'])
-
-const { height: windowHeight } = useWindowSize()
 
 defineProps({
   length: {

@@ -3,6 +3,7 @@ import ScrollRail from '@/components/ScrollRail.vue'
 import { track } from '@/composition/useProgressor.js'
 import { mapPercentToScale } from '@/utils/math.js'
 import EclipseFilter from '@/components/common/EclipseFilter.vue'
+import { overLaptop, overTablet } from '@/store/breakpoints.js'
 
 const trackSetting = {
   filter: {
@@ -36,45 +37,57 @@ const soldierMove = (progress) => {
         class="game-intro2"
       >
         <div
-          class="wrapper"
+          class="w-full"
           :style="{
             transform: `translateY(${
-              400 - mapPercentToScale(progress, 500)
+              (overTablet ? 400 : 200) - mapPercentToScale(progress, 500)
             }px)`,
           }"
         >
-          <div class="intro-movie">
-            <img
-              class="soldier"
-              width="610"
-              height="589"
-              src="@/assets/intro2-soldier.png"
-              :style="{
-                transform: soldierMove(progress),
-              }"
-            />
-            <div
-              class="talk"
-              v-show="progress > 60"
-              :style="{
-                transform: `scale(${mapPercentToScale(
-                  track(progress, trackSetting).talk,
-                  1
-                )})`,
-              }"
-            >
-              <div class="text">
-                <TypingText
-                  text="需求方改規格！"
-                  :per-text="50"
-                  manual
-                  :manual-trigger="progress > 70"
-                />
+          <div class="wrapper">
+            <div class="intro-movie">
+              <img
+                class="soldier"
+                width="610"
+                height="589"
+                src="@/assets/intro2-soldier.png"
+                :style="{
+                  transform: soldierMove(progress),
+                }"
+              />
+              <div
+                class="talk"
+                v-show="progress > 60"
+                :style="{
+                  transform: `scale(${mapPercentToScale(
+                    track(progress, trackSetting).talk,
+                    1
+                  )})`,
+                }"
+              >
+                <div class="text">
+                  <TypingText
+                    text="要求變更規格！"
+                    :per-text="50"
+                    manual
+                    :manual-trigger="progress > 70"
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <TypingText
+            v-if="!overLaptop"
+            class="slogan"
+            text="滿足不了同事的許願..."
+            :per-text="50"
+            manual
+            :manual-trigger="progress > 50"
+          />
         </div>
+
         <TypingText
+          v-if="overLaptop"
           class="slogan"
           text="滿足不了同事的許願..."
           :per-text="50"
@@ -94,8 +107,9 @@ const soldierMove = (progress) => {
 .game-intro2 {
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
   .wrapper {
     position: relative;
     width: 100%;
@@ -105,53 +119,102 @@ const soldierMove = (progress) => {
     justify-content: flex-end;
     overflow: hidden;
   }
-  .slogan {
-    position: absolute;
-    z-index: 100;
-    top: 50%;
-    left: 50%;
-    font-size: 36px;
-    line-height: 42px;
-    transform: translateX(-50%);
-    $shadow: theme-color(secondary);
-    text-shadow: -3px 0 $shadow, 0 3px $shadow, 3px 0 $shadow, 0 -3px $shadow;
-  }
   .intro-movie {
     position: relative;
-    width: 980px;
-    height: 570px;
     background-color: theme-color(primary);
+    max-width: 980px;
+    width: 100%;
+    height: 282px;
+    @include breakpoint('tablet') {
+      height: 447px;
+    }
+
+    @include breakpoint('laptop') {
+      height: 570px;
+    }
   }
   .soldier {
     position: absolute;
-    height: 620px;
+
     width: auto;
-    right: 70px;
+    right: 10px;
     bottom: 0px;
     display: block;
     transform: translate3d(255px, 200px, 0);
+    height: 300px;
+
+    @include breakpoint('tablet') {
+      right: 70px;
+      height: 481px;
+    }
+
+    @include breakpoint('laptop') {
+      height: 620px;
+    }
   }
   .talk {
     position: absolute;
-    left: -110px;
-    top: -90px;
+
+    top: -70px;
     z-index: 2;
     background-image: url('@/assets/intro2-talk.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     width: 450px;
-    padding-bottom: 2%;
+    padding-bottom: 7px;
     transform-origin: bottom right;
     transform: scale(0.1);
+
+    left: unset;
+    right: 23%;
+
+    @include breakpoint('mobile') {
+      top: -90px;
+      padding-bottom: 11px;
+      left: unset;
+      right: 43%;
+    }
+
+    @include breakpoint('laptop') {
+      left: -110px;
+      right: unset;
+    }
 
     .text {
       color: theme-color(dark);
       text-align: center;
-
-      font-size: 36px;
-      line-height: 200px;
-      height: 200px;
+      font-size: 16px;
+      height: 80px;
+      line-height: 80px;
+      @include breakpoint('mobile') {
+        font-size: 24px;
+        height: 119px;
+        line-height: 119px;
+      }
+      @include breakpoint('laptop') {
+        font-size: 36px;
+        line-height: 200px;
+        height: 200px;
+      }
+    }
+  }
+  .slogan {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    @include breakpoint('mobile') {
+      margin-top: 98px;
+    }
+    @include breakpoint('laptop') {
+      width: auto;
+      position: absolute;
+      z-index: 100;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0;
     }
   }
 }

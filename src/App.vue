@@ -1,5 +1,5 @@
 <script setup>
-import { globalLoading } from '@/store/common.js'
+import { globalLoading, windowHeight } from '@/store/common.js'
 import GlobalLoading from '@/components/business/GlobalLoading.vue'
 import NavBar from '@/components/business/NavBar.vue'
 import SiteBanner from '@/components/business/SiteBanner.vue'
@@ -13,21 +13,30 @@ import SectionEventProcess from '@/components/business/SectionEventProcess.vue'
 import SectionMountainView from '@/components/business/SectionMountainView.vue'
 import SectionPerWeek from '@/components/business/SectionPerWeek.vue'
 import VButton from '@/components/business/VButton.vue'
-import { delayNavigate } from '@/utils/browser.js'
-import { useWindowSize } from '@vueuse/core'
-import { computed, ref } from 'vue'
 
-const { height: windowHeight } = useWindowSize()
+import { computed, onMounted, ref } from 'vue'
+import { useLoadingNavigate } from '@/composition/useLoadingNavigate.js'
+
+const { loadingNavigate } = useLoadingNavigate()
+const appStarted = ref(false)
 
 const navBarHeight = ref(56)
 const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
+
+globalLoading.value = true
+onMounted(() => {
+  setTimeout(() => {
+    globalLoading.value = false
+    appStarted.value = true
+  }, 2000)
+})
 </script>
 <template>
   <NavBar :height="navBarHeight" />
-  <SiteBanner :height="siteBannerHeight" />
-  <SectionIntro />
+  <SiteBanner :height="siteBannerHeight" v-if="appStarted" />
+  <SectionIntro class="layout-section-intro" />
   <SectionMountainView class="layout-section-mountain-view" />
-  <SectionPerWeek />
+  <SectionPerWeek class="layout-section-per-week" />
   <SectionEventProcess class="layout-section-event-process" />
   <SectionComingSlogan class="layout-section-coming-slogan" />
   <SectionReview class="layout-section-review" />
@@ -38,7 +47,7 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
       <VButton
         size="expand"
         flick
-        @click="delayNavigate('https://2022.thef2e.com/signup')"
+        @click="loadingNavigate('https://2022.thef2e.com/signup')"
         >立即註冊報名!</VButton
       >
     </div>
@@ -50,6 +59,24 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
 
 <style lang="scss">
 .layout {
+  &-section-intro {
+    margin-bottom: 96px;
+    @include breakpoint('laptop') {
+      margin-bottom: 450px;
+    }
+  }
+  &-section-mountain-view {
+    margin-bottom: 316px;
+    @include breakpoint('tablet') {
+      margin-bottom: 490px;
+    }
+  }
+  &-section-per-week {
+    margin-bottom: 200px;
+    @include breakpoint('tablet') {
+      margin-bottom: 300px;
+    }
+  }
   &-section-review {
     margin-bottom: 100px;
     @include breakpoint('tablet') {
@@ -74,16 +101,9 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
 
   &-section-coming-slogan {
     margin-bottom: 200px;
-    margin-top: 200px;
+
     @include breakpoint('tablet') {
-      margin-top: 450px;
       margin-bottom: 140px;
-    }
-  }
-  &-section-mountain-view {
-    margin-bottom: 316px;
-    @include breakpoint('tablet') {
-      margin-bottom: 490px;
     }
   }
 }

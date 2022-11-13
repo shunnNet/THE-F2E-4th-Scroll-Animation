@@ -167,7 +167,11 @@
   background-image: url('@/assets/diamond_big.png'),
     url('@/assets/diamond_big.png'), url('@/assets/diamond_big.png');
   background-repeat: no-repeat;
-  background-position: 72% 5%, 15% 50%, 55% 90%;
+  background-position: 72% 5%, 15% 30%, 30% 60%, 55% 90%;
+  background-size: 100px;
+  @include breakpoint('tablet') {
+    background-size: auto;
+  }
 }
 
 .diamonds-layer-md {
@@ -194,6 +198,10 @@
     url('@/assets/diamond_md.png');
   background-repeat: no-repeat;
   background-position: 62% 20%, 22% 80%, 80% 30%, 50% 50%, 60% 0%, 30% 90%;
+  background-size: 45px;
+  @include breakpoint('tablet') {
+    background-size: auto;
+  }
 }
 
 .diamonds-layer-sm {
@@ -222,6 +230,10 @@
   background-repeat: no-repeat;
   background-position: 22% 80%, 9% 7%, 90% 2%, 39% 61%, 61% 39%, 83% 22%,
     41% 20%, 80% 99%, 55% 53%;
+  background-size: 20px;
+  @include breakpoint('tablet') {
+    background-size: auto;
+  }
 }
 
 @keyframes move {

@@ -3,6 +3,7 @@ import ScrollRail from '@/components/ScrollRail.vue'
 import { track } from '@/composition/useProgressor.js'
 import { mapPercentToScale } from '@/utils/math.js'
 import EclipseFilter from '@/components/common/EclipseFilter.vue'
+import { overTablet } from '@/store/breakpoints.js'
 
 const trackSetting = {
   filter: {
@@ -28,39 +29,50 @@ const trackSetting = {
         class="game-intro3"
       >
         <div
-          class="wrapper"
+          class="w-full"
           :style="{
             transform: `translateY(${
-              400 - mapPercentToScale(progress, 500)
+              (overTablet ? 400 : 200) - mapPercentToScale(progress, 500)
             }px)`,
           }"
         >
-          <div class="intro-movie">
-            <img
-              class="tree"
-              width="707"
-              height="664"
-              src="@/assets/intro3-tree.png"
-              :style="{
-                transform: `translateY(${
-                  100 - track(progress, trackSetting).tree
-                }%)`,
-              }"
-            />
-            <img
-              class="soldier"
-              width="257"
-              height="236"
-              src="@/assets/intro3-soldier.png"
-              :style="{
-                transform: `translateY(${
-                  100 - track(progress, trackSetting).soldier
-                }%)`,
-              }"
-            />
+          <div class="wrapper">
+            <div class="intro-movie">
+              <img
+                class="tree"
+                width="707"
+                height="664"
+                src="@/assets/intro3-tree.png"
+                :style="{
+                  transform: `translate(-50%, ${
+                    100 - track(progress, trackSetting).tree
+                  }%)`,
+                }"
+              />
+              <img
+                class="soldier"
+                width="257"
+                height="236"
+                src="@/assets/intro3-soldier.png"
+                :style="{
+                  transform: `translate(-50%,${
+                    100 - track(progress, trackSetting).soldier
+                  }%)`,
+                }"
+              />
+            </div>
           </div>
+          <TypingText
+            v-if="!overLaptop"
+            class="slogan"
+            text="動畫技能樹太雜無從下手..."
+            :per-text="50"
+            manual
+            :manual-trigger="progress > 50"
+          />
         </div>
         <TypingText
+          v-if="overLaptop"
           class="slogan"
           text="動畫技能樹太雜無從下手..."
           :per-text="50"
@@ -91,37 +103,66 @@ const trackSetting = {
     overflow: hidden;
   }
   .slogan {
-    position: absolute;
-    z-index: 100;
-    top: 50%;
-    left: 50%;
-    font-size: 36px;
-    line-height: 42px;
-    transform: translateX(-50%);
-    $shadow: theme-color(secondary);
-    text-shadow: -3px 0 $shadow, 0 3px $shadow, 3px 0 $shadow, 0 -3px $shadow;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    @include breakpoint('mobile') {
+      margin-top: 98px;
+    }
+    @include breakpoint('laptop') {
+      position: absolute;
+      z-index: 100;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
   .intro-movie {
     position: relative;
-    width: 980px;
-    height: 570px;
     background-color: theme-color(primary);
+    width: 100%;
+    max-width: 768px;
+    height: 300px;
+
+    @include breakpoint('mobile') {
+      height: 447px;
+    }
+
+    @include breakpoint('laptop') {
+      max-width: 980px;
+      height: 570px;
+    }
   }
   .tree {
     position: absolute;
     display: block;
-    width: 707px;
-    height: auto;
+    width: auto;
     bottom: 0;
-    right: 100px;
+    left: 50%;
+    height: 340px;
+    @include breakpoint('mobile') {
+      height: 521px;
+    }
+
+    @include breakpoint('laptop') {
+      height: 707px;
+    }
   }
   .soldier {
     position: absolute;
     display: block;
-    width: 257px;
+    width: 120px;
     height: auto;
-    left: 317px;
+    left: 43%;
     bottom: 0px;
+    @include breakpoint('mobile') {
+      width: 202px;
+    }
+
+    @include breakpoint('laptop') {
+      width: 257px;
+    }
   }
 }
 </style>

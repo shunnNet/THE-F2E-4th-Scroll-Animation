@@ -3,8 +3,10 @@ import RaisingFlag from '@/components/business/RaisingFlag.vue'
 import ScrollTrigger from '@/components/ScrollTrigger.vue'
 import { useProgressor } from '@/composition/useProgressor.js'
 import { ref } from 'vue'
-import { delayNavigate } from '@/utils/browser.js'
+import { useLoadingNavigate } from '@/composition/useLoadingNavigate.js'
 import { overLaptop } from '@/store/breakpoints.js'
+
+const { loadingNavigate } = useLoadingNavigate()
 
 const processContents = [
   {
@@ -82,7 +84,7 @@ const run = (process, isActive) => {
     <VButton
       :size="overLaptop ? 'large' : 'mini'"
       class="regist-button"
-      @click="delayNavigate('https://2022.thef2e.com/signup')"
+      @click="loadingNavigate('https://2022.thef2e.com/signup')"
       flick
       >點我註冊報名!</VButton
     >
@@ -93,8 +95,16 @@ const run = (process, isActive) => {
           v-for="(process, index) in processRenderContents"
           :key="process.title"
           class="process"
+          :style="{
+            'align-items':
+              index === 0
+                ? 'flex-start'
+                : index === processRenderContents.length - 1
+                ? 'flex-end'
+                : 'center',
+          }"
           @state-change="run(processAnimation[index], $event)"
-          :start="200"
+          :start="100"
         >
           <RaisingFlag
             class="flag"
@@ -114,12 +124,11 @@ const run = (process, isActive) => {
 </template>
 <style lang="scss">
 .section-event-process {
-  // position: relative;
   @extend .container;
   max-width: 604px;
   margin: 50px auto;
 
-  @include breakpoint('desktop') {
+  @include breakpoint('laptop') {
     max-width: 1130px;
   }
 
@@ -130,28 +139,28 @@ const run = (process, isActive) => {
   .wrapper {
     border-left: 5px dashed rgba(255, 255, 255, 0.5);
     margin-left: 56px;
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop') {
       margin-left: 90px;
     }
   }
   .process {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     margin-left: -56px;
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop') {
       margin-left: -90px;
     }
 
     &:not(:last-child) {
       margin-bottom: 198px;
-      @include breakpoint('desktop') {
+      @include breakpoint('laptop') {
         margin-bottom: 328px;
       }
     }
   }
   .flag {
     width: 85px;
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop') {
       width: 140px;
     }
   }
@@ -161,7 +170,7 @@ const run = (process, isActive) => {
     transition: all 1s;
     width: 336px;
     margin-left: 43px;
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop') {
       width: 518px;
       margin-left: 70px;
     }
@@ -176,7 +185,7 @@ const run = (process, isActive) => {
     line-height: 42px;
     color: theme-color(primary-light);
 
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop') {
       font-size: 72px;
       line-height: 84px;
     }
@@ -184,7 +193,7 @@ const run = (process, isActive) => {
   .description {
     white-space: pre-line;
     font-size: 16px;
-    @include breakpoint('desktop') {
+    @include breakpoint('laptop') {
       font-size: 24px;
     }
   }
@@ -193,6 +202,10 @@ const run = (process, isActive) => {
     position: sticky;
     top: 100px;
     left: 100%;
+    display: none;
+    @include breakpoint('mobile') {
+      display: block;
+    }
   }
 }
 </style>

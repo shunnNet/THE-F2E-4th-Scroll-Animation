@@ -81,8 +81,10 @@ onKeyDown('Enter', (e) => {
 
     <div class="site-banner__menu">
       <GameMenu :lock="!animationComplete">
-        <GameMenuItem href="https://google.com">LOG IN</GameMenuItem>
-        <GameMenuItem href="https://google.com">SIGN UP</GameMenuItem>
+        <GameMenuItem href="https://2022.thef2e.com/login">LOG IN</GameMenuItem>
+        <GameMenuItem href="https://2022.thef2e.com/signup"
+          >SIGN UP</GameMenuItem
+        >
       </GameMenu>
     </div>
 

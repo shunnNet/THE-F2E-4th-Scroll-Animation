@@ -3,7 +3,7 @@ import ScrollTrigger from '@/components/ScrollTrigger.vue'
 </script>
 <template>
   <section class="section-comimg-slogan">
-    <ScrollTrigger :start="600" v-slot="{ isActive }" class="slogan">
+    <ScrollTrigger :start="100" v-slot="{ isActive }" class="slogan">
       <TypingText
         :text="'區區修煉已經無法滿足了嗎？\n還有比賽等著你！'"
         manual
@@ -21,6 +21,10 @@ import ScrollTrigger from '@/components/ScrollTrigger.vue'
 </template>
 <style lang="scss">
 .section-comimg-slogan {
+  padding-top: 200px;
+  @include breakpoint('tablet') {
+    padding-top: 450px;
+  }
   .slogan {
     height: 72px;
     text-align: center;
@@ -33,7 +37,7 @@ import ScrollTrigger from '@/components/ScrollTrigger.vue'
       line-height: 54px;
     }
 
-    @include breakpoint('tablet') {
+    @include breakpoint('laptop') {
       height: 168px;
       margin-bottom: 110px;
       font-size: 56px;

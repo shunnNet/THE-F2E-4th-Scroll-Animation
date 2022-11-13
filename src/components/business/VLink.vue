@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from 'vue'
 import { useFlick } from '@/composition/useFlick.js'
+import { useLoadingNavigate } from '@/composition/useLoadingNavigate.js'
+
 const props = defineProps({
   href: {
     type: String,
@@ -24,11 +26,13 @@ const props = defineProps({
     default: false,
   },
 })
+const { loadingNavigate } = useLoadingNavigate()
 const { flick, isFlicking } = useFlick(props)
 
 const navigate = () => {
   if (props.flick) {
     flick()
+    loadingNavigate(props.href)
     setTimeout(() => {
       window.location.href = props.href
     }, 500)

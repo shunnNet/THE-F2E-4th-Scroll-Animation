@@ -3,7 +3,7 @@ import ScrollRail from '@/components/ScrollRail.vue'
 import { track } from '@/composition/useProgressor.js'
 import { mapPercentToScale } from '@/utils/math.js'
 import EclipseFilter from '@/components/common/EclipseFilter.vue'
-import { overTablet } from '@/store/breakpoints.js'
+import { overTablet, overLaptop } from '@/store/breakpoints.js'
 
 const trackSetting = {
   filter: {

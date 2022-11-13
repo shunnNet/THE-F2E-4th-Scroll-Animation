@@ -11,6 +11,10 @@ defineProps({
     type: Number,
     required: true,
   },
+  animate: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const animationComplete = ref(false)
@@ -48,7 +52,10 @@ onKeyDown('Enter', (e) => {
   <div
     :style="{ height: `${height}px` }"
     class="site-banner"
-    :class="{ 'site-banner--complete': animationComplete }"
+    :class="{
+      'site-banner--complete': animationComplete,
+      'site-banner--animate': animate,
+    }"
     @animationend="onAnimationEnd"
   >
     <div class="site-banner__status-bar">
@@ -103,10 +110,14 @@ onKeyDown('Enter', (e) => {
     padding-left: 57px;
     padding-right: 57px;
   }
-  animation-name: game-opening;
+
   animation-duration: 5s;
   animation-timing-function: linear;
   overflow-y: hidden;
+
+  &--animate {
+    animation-name: game-opening;
+  }
 
   &__status-bar {
     @extend .h6;

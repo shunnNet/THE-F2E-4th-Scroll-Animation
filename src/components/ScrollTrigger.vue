@@ -3,6 +3,7 @@ import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref, watch } from 'vue'
 import { minmax } from '@/utils/math.js'
 import { useFrame } from '@/composition/useProgressor.js'
+import { windowHeight } from '@/store/common.js'
 
 const { y } = useWindowScroll()
 
@@ -24,8 +25,6 @@ const props = defineProps({
 })
 
 let orbital = ref(null)
-
-let windowHeight = ref(window.innerHeight)
 
 const handleLengthUnit = (value) => {
   if (value === 'element') {
@@ -52,6 +51,7 @@ const length = computed(() => {
 })
 
 // TODO: orbital.value.offsetTop: with parent has position: relative
+// TODO: recalculate start position when full document height change, or it will be affected by display:none
 const defineStartPosition = () =>
   orbital.value.offsetTop - windowHeight.value + handleLengthUnit(props.start)
 
@@ -62,7 +62,6 @@ onMounted(() => {
 })
 window.addEventListener('resize', () => {
   startPosition.value = defineStartPosition()
-  windowHeight.value = window.innerHeight
 })
 
 const progress = computed(() =>

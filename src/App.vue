@@ -33,7 +33,7 @@ onMounted(() => {
 </script>
 <template>
   <NavBar :height="navBarHeight" />
-  <SiteBanner :height="siteBannerHeight" v-if="appStarted" />
+  <SiteBanner :height="siteBannerHeight" :animate="appStarted" />
   <SectionIntro class="layout-section-intro" />
   <SectionMountainView class="layout-section-mountain-view" />
   <SectionPerWeek class="layout-section-per-week" />

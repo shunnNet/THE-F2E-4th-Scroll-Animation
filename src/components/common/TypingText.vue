@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { promiseWaterfall, sleep, repeat } from '@/utils/promise.js'
 
 const props = defineProps({
@@ -30,27 +30,86 @@ const props = defineProps({
     type: Number,
     default: 1000,
   },
+  manual: {
+    type: Boolean,
+    default: false,
+  },
+  manualTrigger: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const typingText = ref('')
 
-onMounted(() => {
-  repeat(
+/* eslint-disable */
+const initManualValue = props.manual
+/* eslint-enable */
+
+const makeRun = () => {
+  const [exec, stop] = promiseWaterfall(
+    props.text.split('').map((charactor) => {
+      return async () => {
+        await sleep(props.perText)
+        typingText.value += charactor
+      }
+    })
+  )
+  let execution
+  return [
     () => {
       typingText.value = ''
-      return promiseWaterfall(
-        props.text.split('').map((charactor) => {
-          return async () => {
-            await sleep(props.perText)
-            typingText.value += charactor
-          }
-        })
-      )
+      execution = exec()
     },
+    async () => {
+      await stop()
+      await execution
+      typingText.value = ''
+    },
+  ]
+}
+
+const runRepeat = () => {
+  const [runTyping, stopTyping] = makeRun()
+  const [run, stopRepeat] = repeat(
+    runTyping,
     props.repeatTimes,
     props.repeatDelay
   )
+  run()
+  return async () => {
+    await stopTyping()
+    await stopRepeat()
+  }
+}
+
+let stopSign = async () => {}
+
+onMounted(() => {
+  if (!props.manual) {
+    stopSign = runRepeat()
+  } else {
+    if (props.manualTrigger) {
+      const [runTyping, stopTyping] = makeRun()
+      stopSign = stopTyping
+      runTyping()
+    }
+  }
 })
+
+watch(
+  () => props.manualTrigger,
+  async (val) => {
+    if (val === true) {
+      await stopSign()
+      const [runTyping, stopTyping] = makeRun()
+      stopSign = stopTyping
+      runTyping()
+    } else {
+      await stopSign()
+    }
+  }
+)
 </script>
 
 <template>

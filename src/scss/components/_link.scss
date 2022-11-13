@@ -1,0 +1,89 @@
+.v-link {
+  text-decoration: none;
+  color: theme-color(light);
+  cursor: pointer;
+
+  &:visited {
+    color: theme-color(light);
+  }
+
+  &:hover,
+  &.active {
+    @include flicker(link-flicker, 0.7s);
+    animation-direction: alternate;
+  }
+
+  &.flick {
+    @include flicker(link-flicker);
+  }
+  &.lock {
+    color: theme-color(light) !important;
+  }
+}
+
+@keyframes link-flicker {
+  0% {
+    color: theme-color(light);
+  }
+  100% {
+    color: theme-color(primary);
+  }
+}
+
+.v-link--dark {
+  color: theme-color(dark);
+  &:visited {
+    color: theme-color(dark);
+  }
+
+  &:hover,
+  &.active {
+    @include flicker(link-flicker-dark, 0.7s);
+    animation-direction: alternate;
+  }
+
+  &.flick {
+    @include flicker(link-flicker-dark);
+  }
+  &.lock {
+    color: theme-color(dark) !important;
+  }
+}
+
+@keyframes link-flicker-dark {
+  0% {
+    color: theme-color(dark);
+  }
+  100% {
+    color: theme-color(light);
+  }
+}
+
+.v-link--secondary {
+  color: theme-color(secondary);
+  &:visited {
+    color: theme-color(secondary);
+  }
+
+  &:hover,
+  &.active {
+    @include flicker(link-flicker-secondary, 0.7s);
+    animation-direction: alternate;
+  }
+
+  &.flick {
+    @include flicker(link-flicker-secondary);
+  }
+  &.lock {
+    color: theme-color(secondary) !important;
+  }
+}
+
+@keyframes link-flicker-secondary {
+  0% {
+    color: theme-color(secondary);
+  }
+  100% {
+    color: theme-color(light);
+  }
+}

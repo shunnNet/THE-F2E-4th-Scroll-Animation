@@ -3,6 +3,7 @@ import { globalLoading } from '@/store/common.js'
 import GlobalLoading from '@/components/business/GlobalLoading.vue'
 import NavBar from '@/components/business/NavBar.vue'
 import SiteBanner from '@/components/business/SiteBanner.vue'
+import SectionIntro from '@/components/business/SectionIntro.vue'
 import SectionReview from '@/components/business/SectionReview.vue'
 import SectionReward from '@/components/business/SectionReward.vue'
 import SectionFaq from '@/components/business/SectionFaq.vue'
@@ -24,6 +25,7 @@ const siteBannerHeight = computed(() => windowHeight.value - navBarHeight.value)
 <template>
   <NavBar :height="navBarHeight" />
   <SiteBanner :height="siteBannerHeight" />
+  <SectionIntro />
   <SectionMountainView class="layout-section-mountain-view" />
   <SectionPerWeek />
   <SectionEventProcess class="layout-section-event-process" />

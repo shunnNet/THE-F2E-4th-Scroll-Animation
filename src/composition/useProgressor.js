@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import { limitToMax, limitToMin, toFrame } from '@/utils/math.js'
+import { limitToMax, limitToMin, toFrame, minmax } from '@/utils/math.js'
 
 export const useProgressor = () => {
   const progress = ref(0)
@@ -101,5 +101,33 @@ export const useProgressor = () => {
 export const useFrame = (progressRef, lengthRef, rate = 24) => {
   return {
     frame: computed(() => toFrame(progressRef.value, lengthRef.value, rate)),
+  }
+}
+
+// track sample
+// const settings = {
+//   A: {
+//     start: 0,
+//     end: 100 / 3,
+//   },
+//   B: {
+//     start: 100 / 3,
+//     end: (100 / 3) * 2,
+//   },
+// }
+export const track = (progress = 0, trackSettings) => {
+  const result = {}
+  Object.entries(trackSettings).forEach(([name, setting]) => {
+    let range = setting.end - setting.start
+    let p = progress - setting.start
+
+    result[name] = minmax(0, (p / range) * 100, 100)
+  })
+  return result
+}
+
+export const useTrack = (progressRef, trackSettings) => {
+  return {
+    track: track(progressRef.value, trackSettings),
   }
 }

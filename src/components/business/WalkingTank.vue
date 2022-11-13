@@ -1,4 +1,8 @@
 <script setup>
+import tankSideGif from '@/assets/tank-side.gif'
+import tankSide from '@/assets/tank-side.png'
+import tankGif from '@/assets/tank.gif'
+import tank from '@/assets/tank-1.png'
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -12,12 +16,12 @@ const props = defineProps({
   },
 })
 
-const tankImageName = computed(() => {
+const tankImageUrl = computed(() => {
   switch (props.mode) {
     case 'normal':
-      return 'tank'
+      return { static: tank, gif: tankGif }
     case 'side':
-      return 'tank-side'
+      return { static: tankSide, gif: tankSideGif }
     default:
       return 'tank'
   }
@@ -25,8 +29,8 @@ const tankImageName = computed(() => {
 </script>
 <template>
   <div class="tank" :class="{ active }">
-    <img class="tank__static img--fluid" :src="`/${tankImageName}.png`" />
-    <img class="tank__active img--fluid" :src="`/${tankImageName}.gif`" />
+    <img class="tank__static img--fluid" :src="tankImageUrl.static" />
+    <img class="tank__active img--fluid" :src="tankImageUrl.gif" />
   </div>
 </template>
 <style lang="scss">

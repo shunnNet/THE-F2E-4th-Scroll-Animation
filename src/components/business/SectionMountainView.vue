@@ -76,20 +76,20 @@ import { mapPercentToScale } from '@/utils/math.js'
   .layer-2 {
     // 3492 - 3220
     z-index: 2;
-    background-image: url('/L2.png');
+    background-image: url('@/assets/L2.png');
     background-position: bottom;
     background-size: contain;
   }
   .layer-3 {
     // 671
     z-index: 3;
-    background-image: url('/L4.png'), url('/L3.png');
+    background-image: url('@/assets/L4.png'), url('@/assets/L3.png');
     background-position: bottom left, bottom right;
   }
   .layer-5 {
     // 3327
     z-index: 5;
-    background-image: url('/L5.png');
+    background-image: url('@/assets/L5.png');
     background-position: bottom;
     background-size: contain;
   }

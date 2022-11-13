@@ -10,7 +10,7 @@
           <li class="diamond-sponser__list-item">
             <img
               class="img--fluid"
-              src="/logo-block-studio.png"
+              src="@/assets/logo-block-studio.png"
               width="290"
               height="290"
             />
@@ -18,7 +18,7 @@
           <li class="diamond-sponser__list-item">
             <img
               class="img--fluid"
-              src="/logo-titan.png"
+              src="@/assets/logo-titan.png"
               width="290"
               height="290"
             />
@@ -26,7 +26,7 @@
           <li class="diamond-sponser__list-item">
             <img
               class="img--fluid"
-              src="/logo-kdan.png"
+              src="@/assets/logo-kdan.png"
               width="290"
               height="290"
             />
@@ -39,7 +39,7 @@
           <li class="diamond-sponser__list-item">
             <img
               class="img--fluid"
-              src="/logo-jira.png"
+              src="@/assets/logo-jira.png"
               width="240"
               height="81"
             />
@@ -47,7 +47,7 @@
           <li class="diamond-sponser__list-item">
             <img
               class="img--fluid"
-              src="/logo-miro.png"
+              src="@/assets/logo-miro.png"
               width="262"
               height="81"
             />
@@ -55,7 +55,7 @@
           <li class="diamond-sponser__list-item">
             <img
               class="img--fluid"
-              src="/logo-dotted-sign.png"
+              src="@/assets/logo-dotted-sign.png"
               width="287"
               height="116"
             />
@@ -164,8 +164,8 @@
 .diamonds-big-wrap {
   width: 50%;
   height: 100%;
-  background-image: url('/diamond_big.png'), url('/diamond_big.png'),
-    url('/diamond_big.png');
+  background-image: url('@/assets/diamond_big.png'),
+    url('@/assets/diamond_big.png'), url('@/assets/diamond_big.png');
   background-repeat: no-repeat;
   background-position: 72% 5%, 15% 50%, 55% 90%;
 }
@@ -188,9 +188,10 @@
 .diamonds-md-wrap {
   width: 50%;
   height: 100%;
-  background-image: url('/diamond_md.png'), url('/diamond_md.png'),
-    url('/diamond_md.png'), url('/diamond_md.png'), url('/diamond_md.png'),
-    url('/diamond_md.png');
+  background-image: url('@/assets/diamond_md.png'),
+    url('@/assets/diamond_md.png'), url('@/assets/diamond_md.png'),
+    url('@/assets/diamond_md.png'), url('@/assets/diamond_md.png'),
+    url('@/assets/diamond_md.png');
   background-repeat: no-repeat;
   background-position: 62% 20%, 22% 80%, 80% 30%, 50% 50%, 60% 0%, 30% 90%;
 }
@@ -213,10 +214,11 @@
 .diamonds-sm-wrap {
   width: 50%;
   height: 100%;
-  background-image: url('/diamond_sm.png'), url('/diamond_sm.png'),
-    url('/diamond_sm.png'), url('/diamond_sm.png'), url('/diamond_sm.png'),
-    url('/diamond_sm.png'), url('/diamond_sm.png'), url('/diamond_sm.png'),
-    url('/diamond_sm.png');
+  background-image: url('@/assets/diamond_sm.png'),
+    url('@/assets/diamond_sm.png'), url('@/assets/diamond_sm.png'),
+    url('@/assets/diamond_sm.png'), url('@/assets/diamond_sm.png'),
+    url('@/assets/diamond_sm.png'), url('@/assets/diamond_sm.png'),
+    url('@/assets/diamond_sm.png'), url('@/assets/diamond_sm.png');
   background-repeat: no-repeat;
   background-position: 22% 80%, 9% 7%, 90% 2%, 39% 61%, 61% 39%, 83% 22%,
     41% 20%, 80% 99%, 55% 53%;

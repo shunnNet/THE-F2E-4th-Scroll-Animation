@@ -11,7 +11,12 @@ import ScrollTrigger from '@/components/ScrollTrigger.vue'
         :per-text="100"
       />
     </ScrollTrigger>
-    <img class="img--fluid" src="/tank-field.png" width="1920" height="416" />
+    <img
+      class="img--fluid"
+      src="@/assets/tank-field.png"
+      width="1920"
+      height="416"
+    />
   </section>
 </template>
 <style lang="scss">

@@ -40,7 +40,7 @@ const trackSetting = {
               class="tree"
               width="707"
               height="664"
-              src="/intro3-tree.png"
+              src="@/assets/intro3-tree.png"
               :style="{
                 transform: `translateY(${
                   100 - track(progress, trackSetting).tree
@@ -51,7 +51,7 @@ const trackSetting = {
               class="soldier"
               width="257"
               height="236"
-              src="/intro3-soldier.png"
+              src="@/assets/intro3-soldier.png"
               :style="{
                 transform: `translateY(${
                   100 - track(progress, trackSetting).soldier

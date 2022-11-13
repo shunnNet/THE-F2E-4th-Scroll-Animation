@@ -2,9 +2,9 @@
   font-family: 'cubic';
   font-weight: 400;
 
-  src: url('/cubic/Cubic_11_1.013_R.woff2') format('woff2'),
-    url('/cubic/Cubic_11_1.013_R.woff') format('woff'),
-    url('/cubic/Cubic_11_1.013_R.ttf') format('truetype');
+  src: url('@/assets/cubic/Cubic_11_1.013_R.woff2') format('woff2'),
+    url('@/assets/cubic/Cubic_11_1.013_R.woff') format('woff'),
+    url('@/assets/cubic/Cubic_11_1.013_R.ttf') format('truetype');
 }
 
 *,

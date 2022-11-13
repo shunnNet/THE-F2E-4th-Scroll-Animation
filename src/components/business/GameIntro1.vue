@@ -92,7 +92,7 @@ const trackSetting = {
     right: 0;
     width: 390px;
 
-    background-image: url('/intro1-talk.png');
+    background-image: url('@/assets/intro1-talk.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

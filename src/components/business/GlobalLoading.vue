@@ -1,4 +1,5 @@
 <script setup>
+import WalkingTank from '@/components/business/WalkingTank.vue'
 defineProps({
   show: {
     type: Boolean,
@@ -9,9 +10,7 @@ defineProps({
 <template>
   <div class="global-loading" v-if="show">
     <div class="global-loading__text">Loading.<typingText text=".." /></div>
-    <div class="global-loading__tank">
-      <img class="img--fluid" src="/tank_side.gif" />
-    </div>
+    <WalkingTank class="global-loading__tank" active />
   </div>
 </template>
 <style lang="scss">

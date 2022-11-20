@@ -55,6 +55,20 @@ onMounted(() => {
 
   <DiamondSponser />
   <GlobalLoading :show="globalLoading" />
+  <footer class="layout-footer">
+    <span class="layout-footer__copyright"> Copyright © 2022 </span>
+    <span class="layout-footer__authors">
+      <VLink
+        href="https://noarzxcvbnm.github.io/PersonalWebsite/index.html"
+        flick
+        >Design - 小菜</VLink
+      >
+      /
+      <VLink href="https://github.com/shunnNet" flick
+        >Frontend - shunnNet</VLink
+      >
+    </span>
+  </footer>
 </template>
 
 <style lang="scss">
@@ -104,6 +118,20 @@ onMounted(() => {
 
     @include breakpoint('tablet') {
       margin-bottom: 140px;
+    }
+  }
+
+  &-footer {
+    background-color: theme-color(primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include breakpoint('mobile') {
+      flex-direction: row;
+      justify-content: center;
+    }
+    &__copyright {
+      margin-right: 5px;
     }
   }
 }
